@@ -1,0 +1,48 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#head-container {
+    background-color: #D00000;
+    color: white;
+    height: 360px;
+    margin-bottom: 20px
+}
+
+#head-container #intro {
+    margin-top: 30px
+}
+
+#head-container #intro img {
+    width: 128px;
+    height: 128px;
+    margin: 20px 0 40px 0
+}
+
+#head-container h4 {
+    font-weight: 600
+}
+
+#main-container {
+    padding: 0;
+}
+
+#main-container .fa-github {
+    font-size: 75px;
+}
+
+#footer {
+    margin-top: 100px;
+}
+
+#footer footer {
+    font-size: 10px
+}
+
+.container a {
+    color: #000;
+}
+
+.highlight {
+    text-align: left;
+}

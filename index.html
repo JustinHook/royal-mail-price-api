@@ -1,0 +1,121 @@
+---
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Royal Mail Price API</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/syntax.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="head-container" class="container-fluid">
+    <div class="container">
+        <div id="intro" class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <h2>Royal Mail Price API</h2>
+
+                <p>An API to calculate the price of sending items via Royal Mail.</p>
+                <img src="box.svg"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <h4>Host your own public or private API</h4>
+            </div>
+            <div class="col-md-1 text-center">
+                <h4>or</h4>
+            </div>
+            <div class="col-md-7 text-center">
+                <h4>Use the PHP library</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="main-container" class="container">
+    <div class="row">
+    <div class="col-md-4 text-center">
+        <p>Below is an example of how to calculate the price of sending an item via 2nd Class that is 10cm x 10cm x 2cm with the HTTP API.</p>
+        {% highlight bash %}
+        curl -G http://localhost/index.php \
+        -d "length=10" \
+        -d "width=10" \
+        -d "depth=2" \
+        -d "services=secondclass"
+        {% endhighlight %}
+        {% highlight json %}
+[
+    {
+        "service": "2nd Class",
+        "prices": [
+            {
+                "price": "0.73",
+                "compensation": 20
+            }
+        ]
+    }
+]
+        {% endhighlight %}
+        <p>To get started with running your own API  click the link below to go to the GitHub repository.</p>
+        <a href="https://github.com/JustinHook/royal-mail-price-api">
+            <i class="fa fa-github"></i>
+        </a>
+        <p><a href="https://github.com/JustinHook/royal-mail-price-api">JustinHook/royal-mail-price-api</a></p>
+    </div>
+    <div class="col-md-7 col-md-offset-1 text-center">
+        <p>Below is an example of how to calculate the price of sending an item via 2nd Class that is 10cm x 10cm x 2cm with the PHP library.</p>
+        {% highlight php %}
+        <?php
+use \RoyalMailPriceCalculator\Calculator;
+use \RoyalMailPriceCalculator\Package;
+use \RoyalMailPriceCalculator\Services\SecondClassService;
+
+$calculator = new Calculator();
+
+$package = new Package();
+$package->setDimensions(10, 10, 2);
+$package->setWeight(90);
+
+$calculator->setServices([
+        new SecondClassService()
+        ]);
+
+foreach ($calculator->calculatePrice($package) as $calculated) {
+    echo $calculated['service']->getName() . "\n";
+    foreach ($calculated['prices'] as $price) {
+        echo "  →  £{$price['price']} (Compensation: £{$price['compensation']})\n";
+    }
+    echo "\n";
+}
+        {% endhighlight %}
+
+
+    {% highlight php %}
+2nd Class Service
+  →  £0.73 (Compensation: £20)
+    {% endhighlight %}
+
+
+
+
+        <p>To start using the calculator library in your PHP app click the link below to go to the GitHub repository.</p>
+        <a href="https://github.com/JustinHook/royal-mail-price-calculator">
+            <i class="fa fa-github"></i>
+        </a>
+        <p><a href="https://github.com/JustinHook/royal-mail-price-calculator">JustinHook/royal-mail-price-calculator</a></p>
+    </div>
+    </div>
+
+    <div id="footer" class="row">
+    <footer class="text-center">
+        <a href="https://www.iconfinder.com/icons/289621/archive_box_bundle_cargo_delivery_package_products_icon#size=128">Box icon</a> by <a href="https://www.iconfinder.com/PixelBuddha">Pixel Buddha</a>, used under CC BY / Modified by adding border and changing background colour
+    </footer>
+    </div>
+</div>
+
+</body>
+</html>
