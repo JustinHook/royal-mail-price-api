@@ -5,9 +5,25 @@ It is a HTTP wrapper around the PHP library https://github.com/JustinHook/royal-
 
 Usage
 -----
-Run `composer install`
+You can either run the API with Docker using the prebuilt image at https://registry.hub.docker.com/u/justinhook/royal-mail-price-api/ or you can serve the code in this repository with a web server.
 
-`GET /index.php?length=10&width=10&depth=2&services=signedforsecondclass,secondclass`
+#### 1. Download
+The easiest way to download the API is with `git`:
+
+    $ git clone https://github.com/JustinHook/royal-mail-price-api.git
+    
+#### 2. Install dependencies
+We use composer to manage our dependencies. You can download it from https://getcomposer.org/.
+
+    $ cd royal-mail-price-api
+    $ composer install
+
+#### 3. Finish
+You should now be able to access the below URL in your browser.
+
+    /index.php?length=10&width=10&depth=2&services=signedforsecondclass,secondclass
+
+The following JSON data should be returned.
 
 ```json
 [
@@ -31,6 +47,9 @@ Run `composer install`
     }
 ]
 ```
+
+Parameters
+-----
 
 Required Parameters  | Description
 ------------- | -------------
